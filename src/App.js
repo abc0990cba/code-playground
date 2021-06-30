@@ -9,13 +9,14 @@ function App() {
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories items={[
-              "Мясная",
-              "Вегетарианская",
-              "Гриль",
-              "Острые",
-              "Закрытые",
-            ]}/>
+            <Categories 
+              items={[
+                "Мясная",
+                "Вегетарианская",
+                "Гриль",
+                "Острые",
+                "Закрытые",
+              ]}/>
             <div className="sort">
               <div className="sort__label">
                 <svg
