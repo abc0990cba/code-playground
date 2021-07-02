@@ -3,8 +3,9 @@ import { Route } from "react-router-dom";
 
 import axios from 'axios';
 
-import { Header } from "./components";
-import { Home, Cart } from "./pages";
+import { Header } from './components';
+import { Home, Cart } from './pages';
+
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
