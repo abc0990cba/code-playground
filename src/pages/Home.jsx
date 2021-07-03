@@ -1,8 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { Categories, SortPopup, PizzaCard } from "../components";
 
-function Home({ items }) {
+function Home() {
+  const { items } = useSelector(({ pizzas }) => {
+    return {
+      items: pizzas.items,
+    };
+  });
+
   const sortItems = [
     { name: "популярности", type: "popular" },
     { name: "цене", type: "price" },
@@ -10,7 +17,7 @@ function Home({ items }) {
   ];
 
   const pizzaType = ["Мясная", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
-  
+
   return (
     <div className="container">
       <div className="content__top">

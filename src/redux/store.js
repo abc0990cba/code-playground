@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
+import { createStore } from "redux";
 
-import rootReducer from './reducers';
+import rootReducer from "./reducers";
 
 const store = createStore(
   rootReducer,
@@ -9,5 +9,4 @@ const store = createStore(
 
 // store.subscribe(() => console.log(store.getState()));
 
-
-export default store
+export default store;
