@@ -68,4 +68,4 @@ const SortPopup = ({ items }) => {
   );
 };
 
-export default SortPopup;
+export default React.memo(SortPopup);

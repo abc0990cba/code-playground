@@ -8,7 +8,7 @@ export function sortBy( sortType ){
 }
 
 
-export function sortCategory( categIndex) {
+export function setCategory( categIndex) {
   return {
     type: SET_CATEGORY,
     payload: categIndex,
