@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { fetchPizzas } from "../redux/actions/pizzas";
 import { Categories, SortPopup, PizzaCard } from "../components";
 
 import { setCategory } from "../redux/actions/filters";
@@ -20,8 +21,13 @@ function Home() {
   const onSelectItem = useCallback(
     (index) => {
       dispatch(setCategory(index));
-    }, [dispatch]
+    },
+    [dispatch]
   );
+
+     useEffect(() => {
+       dispatch(fetchPizzas());
+     }, [dispatch]);
 
   return (
     <div className="container">
@@ -31,9 +37,7 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items.map((item) => (
-          <PizzaCard key={item.id} {...item} />
-        ))}
+        {items && items.map((item) => <PizzaCard key={item.id} {...item} />)}
       </div>
     </div>
   );
