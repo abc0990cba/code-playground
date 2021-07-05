@@ -1,8 +1,8 @@
 import { SET_CATEGORY, SET_SORT_BY } from '../action_types'
 
 const initialState = {
-  sortBy: "pupular",
-  category: 0,
+  sortBy: "rating",
+  category: null,
 };
 
 
