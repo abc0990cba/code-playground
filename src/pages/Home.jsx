@@ -12,9 +12,9 @@ import {
 import { setCategory, setSortBy } from "../redux/actions/filters";
 
 const sortItems = [
-  { name: "популярности", type: "rating" },
-  { name: "цене", type: "price" },
-  { name: "алфавиту", type: "alphabet" },
+  { name: "популярности", type: "rating", order: "desc" },
+  { name: "цене", type: "price", order: "desc" },
+  { name: "алфавиту", type: "name", order: "asc" },
 ];
 
 const pizzaType = ["Мясная", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
@@ -41,7 +41,7 @@ function Home() {
   );
 
   useEffect(() => {
-    dispatch(fetchPizzas());
+    dispatch(fetchPizzas(category, sortBy));
   }, [dispatch, category, sortBy]);
 
   return (
@@ -53,7 +53,7 @@ function Home() {
           onClickCategory={onSelectCategory}
         />
         <SortPopup
-          activeSortType={sortBy}
+          activeSortType={sortBy.type}
           items={sortItems}
           onClickSortType={onSelectSortType}
         />

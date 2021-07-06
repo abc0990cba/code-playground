@@ -7,12 +7,16 @@ const setLoaded = (payload) => ({
   payload,
 })
 
-export const fetchPizzas = () => async (dispatch) => {
+export const fetchPizzas = (category, sortBy) => async (dispatch) => {
 
   dispatch(setLoaded(false));
-  const axiosObj = await axios.get(
-    "http://localhost:3001/pizzas?_sort=price&_order=desc"
-  );
+  const axiosObj = await axios.get("http://localhost:3001/pizzas", {
+    params: {
+      category: category,
+      _sort: sortBy.type,
+      _order: sortBy.order,
+    },
+  });
   dispatch(setPizzas(axiosObj.data));
   dispatch(setLoaded(true));
 };

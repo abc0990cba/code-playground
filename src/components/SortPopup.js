@@ -52,7 +52,7 @@ const SortPopup = ({ items, activeSortType, onClickSortType }) => {
               items.map((item, ind) => {
                 return (
                   <li
-                    onClick={() => onSelectItem(item.type)}
+                    onClick={() => onSelectItem(item)}
                     className={activeSortType === item.type ? "active" : ""}
                     key={item.name + ind}
                   >
