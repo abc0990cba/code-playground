@@ -1,29 +1,43 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { SET_PIZZAS, SET_LOADED } from "../action_types";
-
-const setLoaded = (payload) => ({
-  type: SET_LOADED,
+export const setLoaded = (payload) => ({
+  type: 'SET_LOADED',
   payload,
-})
+});
 
-export const fetchPizzas = (category, sortBy) => async (dispatch) => {
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
+  dispatch({
+    type: 'SET_LOADED',
+    payload: false,
+  });
 
-  dispatch(setLoaded(false));
-  const axiosObj = await axios.get("http://localhost:3001/pizzas", {
+  axios.get("http://localhost:3001/pizzas", {
     params: {
       category: category,
       _sort: sortBy.type,
       _order: sortBy.order,
     },
-  });
-  dispatch(setPizzas(axiosObj.data));
-  dispatch(setLoaded(true));
+  })
+    .then(({ data }) => {
+      dispatch(setPizzas(data));
+    });
 };
 
-export function setPizzas(items) {
-  return {
-    type: SET_PIZZAS,
-    payload: items,
-  };
-}
+// export const fetchPizzas = (category, sortBy) => async (dispatch) => {
+//   dispatch(setLoaded(false));
+//   const axiosObj = await axios.get("http://localhost:3001/pizzas", {
+//     params: {
+//       category: category,
+//       _sort: sortBy.type,
+//       _order: sortBy.order,
+//     },
+//   });
+//   dispatch(setPizzas(axiosObj.data));
+//   dispatch(setLoaded(true));
+// };
+
+
+export const setPizzas = (items) => ({
+  type: 'SET_PIZZAS',
+  payload: items,
+});
