@@ -1,8 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { useTypeSelector } from "../hooks/hooks";
+import { useTypeSelector, useTypeDispatch } from "../hooks/hooks";
 
 import cartEmptyImage from "../assets/img/empty-cart.png";
 import { CartItem, Button } from "../components";
@@ -14,7 +13,7 @@ import {
 } from "../redux/actions/cart";
 
 function Cart() {
-  const dispatch = useDispatch();
+  const dispatch = useTypeDispatch();
   const { totalPrice, totalCount, items } = useTypeSelector(({ cart }) => cart);
 
   const addedPizzas = Object.keys(items).map((key) => {
