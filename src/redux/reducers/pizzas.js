@@ -3,7 +3,7 @@ const initialState = {
   isLoaded: false,
 };
 
-const pizzas = (state = initialState, action) => {
+export const pizzas = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_PIZZAS':
       return {
@@ -23,4 +23,3 @@ const pizzas = (state = initialState, action) => {
   }
 };
 
-export default pizzas;

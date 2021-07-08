@@ -1,6 +1,8 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { useTypeSelector } from "../hooks/hooks";
 
 import cartEmptyImage from "../assets/img/empty-cart.png";
 import { CartItem, Button } from "../components";
@@ -13,10 +15,10 @@ import {
 
 function Cart() {
   const dispatch = useDispatch();
-  const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
+  const { totalPrice, totalCount, items } = useTypeSelector(({ cart }) => cart);
 
   const addedPizzas = Object.keys(items).map((key) => {
-    return items[key].items[0];
+    return items[+key].items[0];
   });
 
   const onClearCart = () => {
@@ -25,17 +27,17 @@ function Cart() {
     }
   };
 
-  const onRemoveItem = (id) => {
+  const onRemoveItem = (id: number) => {
     if (window.confirm("Вы действительно хотите удалить?")) {
       dispatch(removeCartItem(id));
     }
   };
 
-  const onPlusItem = (id) => {
+  const onPlusItem = (id: number) => {
     dispatch(plusCartItem(id));
   };
 
-  const onMinusItem = (id) => {
+  const onMinusItem = (id: number) => {
     dispatch(minusCartItem(id));
   };
 
@@ -170,7 +172,7 @@ function Cart() {
                   <span>Вернуться назад</span>
                 </Link>
               </a>
-              <Button onClick={onClickOrder} className="pay-btn">
+              <Button onClick={onClickOrder} className="pay-btn" outline={false}>
                 <span>Оплатить сейчас</span>
               </Button>
             </div>
