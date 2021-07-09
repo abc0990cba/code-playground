@@ -1,5 +1,12 @@
+import {PizzaObject} from "./pizzas";
+
+interface PizzaInCard {
+  items: PizzaObject[],
+  totalPrice: number,
+}
+
 export interface ICartState {
-  items: any[];
+  items: PizzaInCard[];
   totalPrice: number;
   totalCount: number;
 }
@@ -12,33 +19,33 @@ export enum CartActionTypes {
   CLEAR_CART = "CLEAR_CART",
 }
 
-interface AddPizzaCartAction {
+export interface IAddPizzaToCartAction {
   type: CartActionTypes.ADD_PIZZA_CART;
-  payload: object | any;
+  payload: PizzaObject;
 }
 
-interface RemoveCartItemAction {
+export interface IRemoveCartItemAction {
   type: CartActionTypes.REMOVE_CART_ITEM;
   payload: number;
 }
 
-interface PlusCartItemAction {
+export interface IPlusCartItemAction {
   type: CartActionTypes.PLUS_CART_ITEM;
   payload: number;
 }
 
-interface MinusCartItemAction {
+export interface IMinusCartItemAction {
   type: CartActionTypes.MINUS_CART_ITEM;
   payload: number;
 }
 
-interface ClearCartAction {
+export interface IClearCartAction {
   type: CartActionTypes.CLEAR_CART;
 }
 
 export type CartAction =
-  | AddPizzaCartAction
-  | RemoveCartItemAction
-  | PlusCartItemAction
-  | MinusCartItemAction
-  | ClearCartAction;
+  | IAddPizzaToCartAction
+  | IRemoveCartItemAction
+  | IPlusCartItemAction
+  | IMinusCartItemAction
+  | IClearCartAction;

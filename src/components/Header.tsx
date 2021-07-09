@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useTypeSelector } from "../hooks/hooks";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
 import Button from "./Button";
 
-function Header() {
-  const { totalPrice, totalCount } = useSelector(({ cart }) => cart);
+const Header: React.FC = () => {
+  const { totalPrice, totalCount } = useTypeSelector(({ cart }) => cart);
 
   return (
     <div className="header">

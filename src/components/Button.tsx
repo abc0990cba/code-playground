@@ -1,8 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames";
 
-const Button = ({ onClick, className, outline, children }) => {
+interface Props{
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className: string;
+  outline?: boolean;
+  children?: React.ReactNode;
+}
+
+const Button: React.FC<Props> = ({ onClick, className = "", outline=false, children=null}) => {
   return (
     <button
       onClick={onClick}
@@ -15,8 +21,5 @@ const Button = ({ onClick, className, outline, children }) => {
   );
 };
 
-Button.propTypes = {
-  onClick: PropTypes.func,
-};
 
 export default Button;

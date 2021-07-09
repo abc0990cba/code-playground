@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import {
   Categories,
@@ -11,6 +10,8 @@ import {
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
 import { addPizzaToCart } from "../redux/actions/cart";
+import { useTypeSelector, useTypeDispatch } from "../hooks/hooks";
+import { PizzaObject } from "../types/pizzas";
 
 const categoryNames = [
   "Мясные",
@@ -25,12 +26,12 @@ const sortIems = [
   { name: "алфавиту", type: "name", order: "asc" },
 ];
 
-function Home() {
-  const dispatch = useDispatch();
-  const items = useSelector(({ pizzas }) => pizzas.items);
-  const cartItems = useSelector(({ cart }) => cart.items);
-  const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-  const { category, sortBy } = useSelector(({ filters }) => filters);
+const Home: React.FC = () => {
+  const dispatch = useTypeDispatch();
+  const items = useTypeSelector(({ pizzas }) => pizzas.items);
+  const cartItems = useTypeSelector(({ cart }) => cart.items);
+  const isLoaded = useTypeSelector(({ pizzas }) => pizzas.isLoaded);
+  const { category, sortBy } = useTypeSelector(({ filters }) => filters);
 
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category));
@@ -50,8 +51,8 @@ function Home() {
     [dispatch]
   );
 
-  const handleAddPizzaToCart = (obj) => {
-    dispatch(addPizzaToCart(obj));
+  const handleAddPizzaToCart = (pizza: PizzaObject) => {
+    dispatch(addPizzaToCart(pizza));
   };
 
   return (
@@ -71,7 +72,7 @@ function Home() {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
-          ? items.map((obj) => (
+          ? items.map((obj: PizzaObject) => (
               <PizzaBlock
                 onClickAddPizza={handleAddPizzaToCart}
                 key={obj.id}
@@ -85,6 +86,6 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

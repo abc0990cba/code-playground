@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function Categories({ activeCategory = null, items = [], onClickCategory }) {
   return (
@@ -26,10 +25,10 @@ function Categories({ activeCategory = null, items = [], onClickCategory }) {
   );
 }
 
-Categories.propTypes = {
-  // activeCategory: PropTypes.oneOf([PropTypes.number, null]),
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClickCategory: PropTypes.func.isRequired,
-};
+// Categories.propTypes = {
+//   // activeCategory: PropTypes.oneOf([PropTypes.number, null]),
+//   items: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   onClickCategory: PropTypes.func.isRequired,
+// };
 
 export default React.memo(Categories);

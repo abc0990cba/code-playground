@@ -12,7 +12,9 @@ import {
   minusCartItem,
 } from "../redux/actions/cart";
 
-function Cart() {
+
+
+const Cart: React.FC = () => {
   const dispatch = useTypeDispatch();
   const { totalPrice, totalCount, items } = useTypeSelector(({ cart }) => cart);
 
@@ -123,15 +125,15 @@ function Cart() {
             </div>
           </div>
           <div className="content__items">
-            {addedPizzas.map((obj) => (
+            {addedPizzas.map((pizza) => (
               <CartItem
-                key={obj.id}
-                id={obj.id}
-                name={obj.name}
-                type={obj.type}
-                size={obj.size}
-                totalPrice={items[obj.id].totalPrice}
-                totalCount={items[obj.id].items.length}
+                key={pizza.id}
+                id={pizza.id}
+                name={pizza.name}
+                type={pizza.type}
+                size={pizza.size}
+                totalPrice={items[pizza.id].totalPrice}
+                totalCount={items[pizza.id].items.length}
                 onRemove={onRemoveItem}
                 onMinus={onMinusItem}
                 onPlus={onPlusItem}

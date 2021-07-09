@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function SortPopup({ items, activeSortType, onClickSortType }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
@@ -67,10 +66,10 @@ function SortPopup({ items, activeSortType, onClickSortType }) {
   );
 }
 
-SortPopup.propTypes = {
-  activeSortType: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onClickSortType: PropTypes.func.isRequired,
-};
+// SortPopup.propTypes = {
+//   activeSortType: PropTypes.string.isRequired,
+//   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+//   onClickSortType: PropTypes.func.isRequired,
+// };
 
 export default React.memo(SortPopup);
