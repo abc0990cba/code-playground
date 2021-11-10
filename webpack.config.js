@@ -1,8 +1,8 @@
 const path = require('path');
-
+//'./src/index.ts',
 module.exports = {
     mode: 'production',
-    entry: './src/index.ts',
+    entry: path.join(__dirname, 'src', 'index.ts'),
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
