@@ -1,6 +1,8 @@
 import React from 'react';
-interface MyButtonProps {
+import './MyButton.css';
+export interface MyButtonProps {
     color: string;
+    big?: boolean;
 }
-export declare const MyButton: React.FC<MyButtonProps>;
-export {};
+declare const MyButton: React.FC<MyButtonProps>;
+export default MyButton;
