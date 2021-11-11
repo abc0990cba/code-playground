@@ -1,2 +1,3 @@
 import MyButton from "./MyButton/MyButton";
-export { MyButton };
+import HeatMap from "./HeatMap";
+export { MyButton, HeatMap };
