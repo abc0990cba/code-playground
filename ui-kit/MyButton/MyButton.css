@@ -1,0 +1,11 @@
+.my-button {
+    padding: 10px 5px;
+    color: black;
+    border: 1px dashed black;
+    background: transparent;
+}
+
+.big-button {
+    font-size: 30px;
+    padding: 20px;
+}
