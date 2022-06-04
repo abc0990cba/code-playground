@@ -1,0 +1,67 @@
+:root {
+    --border-radius: 4px;
+    --border-style: 1px solid gray;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 50px;
+}
+
+.form {
+    padding: 30px;
+    width: 100%;
+    border-radius: var(--border-radius);
+    border: var(--border-style);
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    min-width: 300px;
+    width: 100%;
+    padding: 5px 10px;
+    border: var(--border-style);
+    border-radius: var(--border-radius);
+}
+
+.form button {
+    margin-top: 20px;
+
+    border: var(--border-style);
+    border-radius: var(--border-radius);
+    background: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: teal;
+    cursor: pointer;
+}
+
+.form button:focus, .form input:focus {
+    outline: none;
+}
+
+.connection_message {
+    width: 400px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #a0f8a0;
+    color: #224022;
+    border-radius: var(--border-radius);
+}
+
+.message {
+    width: 400px;
+    border-radius: var(--border-radius);
+    border: var(--border-style);
+    padding: 15px;
+    margin-top: 10px;
+}
