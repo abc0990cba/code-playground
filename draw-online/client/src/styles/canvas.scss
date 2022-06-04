@@ -1,0 +1,14 @@
+@import "./variables";
+
+
+.canvas {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 3px solid #cecece;
+  background-color: white;
+}
