@@ -1,0 +1,32 @@
+@import "fonts";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f1f1;
+  h1 {
+    font-family: Pushster;
+    font-weight: 400;
+    color: rgb(34, 41, 36);
+    font-size: 60px;
+    text-align: center;
+  }
+}
+
+.img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+
+  border: 15px solid rgb(255, 255, 255);
+}
+
+.container {
+  margin: 1.2rem auto;
+  border: 15px solid rgb(223, 215, 215);
+  width: max-content;
+}

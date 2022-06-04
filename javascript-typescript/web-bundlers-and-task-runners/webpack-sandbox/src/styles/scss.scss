@@ -1,0 +1,12 @@
+$border: 4px dashed #bbb;
+.card {
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  border: $border;
+
+  h2 {
+    color: brown;
+    text-align: center;
+  }
+}
