@@ -1,0 +1,15 @@
+.items{
+    display: flex;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+.text{
+     white-space:nowrap;
+     display: flex;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+
+.radio{
+    background-color: green !important;
+}

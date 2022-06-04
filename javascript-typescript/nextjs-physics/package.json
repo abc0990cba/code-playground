@@ -1,0 +1,21 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "konva": "^7.2.5",
+    "napi-physics-modeling-oop": "^1.0.7",
+    "next": "10.x",
+    "nextjs-progressbar": "^0.0.9",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "react-konva": "^17.0.2-0",
+    "react-mathjax2": "^0.0.2",
+    "sass": "^1.32.8"
+  }
+}
