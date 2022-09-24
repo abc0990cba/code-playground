@@ -1,7 +1,0 @@
-webpack 5 (base config) https://daruse.ru/webpack-5-sozdanie-bazovoj-konfiguraczii
-----------------------
-https://github.com/harryheman/Webpack5-Max
---------------------
-
-!!!! need to and webpack-bundle-analyzer, !!!!!
-!!!! eslint, correct file support  for ts !!!!!
