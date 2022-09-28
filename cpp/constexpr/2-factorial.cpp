@@ -30,7 +30,7 @@ int main() {
     std::cout << k << "! = " << factorial(k) << '\n';
 
     int m = 9;
-    
+
     // Computed at build time.
     std::cout << m << "! = " << factorial(m) << '\n';
 
