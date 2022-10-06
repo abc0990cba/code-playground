@@ -10,10 +10,10 @@ writeableStream.end("Finish.");
 
 let readableStream = fs.createReadStream("hello.txt", "utf8");
 
-let chunksAmount = 0;
+let chunksCounter = 0;
 readableStream.on("data", function (chunk) {
-    ++chunksAmount;
-    console.log(`chunk ${chunksAmount}: `, chunk);
-    console.log("Chunks amount: ", chunksAmount);
+    ++chunksCounter;
+    console.log(`chunk ${chunksCounter}: `, chunk);
+    console.log("Chunks amount: ", chunksCounter);
 });
 
