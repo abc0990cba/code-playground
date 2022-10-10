@@ -15,7 +15,7 @@ const counter = new Counter({ highWaterMark: 2 });
     for (let i = 1; i <= 1000; ++i) {
         const canWrite = counter.write(Buffer.from(`${i}`, "utf-8"));
 
-        console.log("Can write bunch of data? ", canWrite.toString());
+        console.log("Can we write bunch of data? ", canWrite.toString());
 
         if (!canWrite) {
             await events.once(counter, "drain");
