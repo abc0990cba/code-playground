@@ -1,5 +1,3 @@
-// https://habr.com/ru/post/479048/
-
 const { Readable } = require("stream");
 
 class Counter extends Readable {
