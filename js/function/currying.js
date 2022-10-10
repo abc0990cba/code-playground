@@ -16,6 +16,8 @@ function sum(a, b, c) {
 
 let curriedSum = curry(sum);
 
-const result = curriedSum(1)(2)(3);
+const result1 = curriedSum(1)(2)(3); // 6
+console.log(result1);
 
-console.log(result); // 6
+const result2 = curriedSum(1)(2, 1); // 4
+console.log(result2);
