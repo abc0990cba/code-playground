@@ -2,26 +2,52 @@ const fs = require("node:fs");
 const zlib = require("node:zlib");
 const http = require("node:http");
 
-const rs = fs.createReadStream("index.html");
-const gz = zlib.createGzip();
+const once = (fn) => (...args) => {
+    if (!fn) {
+        return;
+    }
+    const res = fn(...args);
+    fn = null;
+    return res;
+}
 
-const buffers = [];
-let buffer = null;
+const prepareCache = (callback) => {
+    callback = once(callback);
 
-gz.on("data", (buffer) => {
-    buffers.push(buffer);
-});
+    const rs = fs.createReadStream("index.html");
+    const gz = zlib.createGzip();
 
-gz.on("end", () => {
-    buffer = Buffer.concat(buffers);
-})
+    const buffers = [];
+    let buffer = null;
 
-rs.pipe(gz);
+    gz.on("data", (buffer) => {
+        buffers.push(buffer);
+    });
 
-const server = http.createServer((request, response) => {
-    console.log(request.url);
-    response.writeHead("200", { "Content-Encoding": "gzip" });
-    response.end(buffer);
-})
+    gz.once("end", () => {
+        buffer = Buffer.concat(buffers);
+        callback(null, buffer);
+    })
 
-server.listen(8100);
+    gz.on("error", callback);
+    rs.on("error", callback);
+
+    rs.pipe(gz);
+
+}
+
+const startServer = (err, buffer) => {
+    if (err) {
+        throw err;
+    }
+
+    const server = http.createServer((request, response) => {
+        console.log(request.url);
+        response.writeHead("200", { "Content-Encoding": "gzip" });
+        response.end(buffer);
+    })
+
+    server.listen(8100);
+}
+
+prepareCache(startServer);
