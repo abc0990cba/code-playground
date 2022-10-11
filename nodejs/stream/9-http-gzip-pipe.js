@@ -5,7 +5,6 @@ const http = require("node:http");
 const rs = fs.createReadStream("index.html");
 const gz = zlib.createGzip();
 
-
 const buffers = [];
 let buffer = null;
 
