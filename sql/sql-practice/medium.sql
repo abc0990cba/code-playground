@@ -90,3 +90,47 @@ SELECT
   SUM(gender = 'F') AS female_count
 FROM patients
 
+
+-- Task 7
+-- Show first and last name, allergies from patients
+-- which have allergies to either 'Penicillin' or 'Morphine'.
+-- Show results ordered ascending by allergies then
+-- by first_name then by last_name.
+SELECT first_name, last_name, allergies
+FROM patients
+WHERE allergies IN ('Penicillin', 'Morphine')
+ORDER BY allergies, first_name, last_name;
+
+
+-- Task 8
+-- Show patient_id, diagnosis from admissions.
+-- Find patients admitted multiple times for the same diagnosis.
+SELECT patient_id, diagnosis
+FROM admissions
+GROUP BY patient_id, diagnosis
+HAVING COUNT(*) > 1;
+
+
+-- Task 9
+-- Show the city and the total number of patients in the city.
+-- Order from most to least patients and then by city name ascending.
+SELECT city, COUNT(*) AS num_patients
+FROM patients
+GROUP BY city
+ORDER BY num_patients DESC, city ASC;
+
+
+-- Task 10
+-- Show first name, last name and role
+-- of every person that is either patient or physician.
+-- The roles are either "Patient" or "Physician"
+SELECT first_name, last_name, 'Patient' as role
+FROM patients
+  UNION
+SELECT first_name, last_name, 'Physician' as role
+FROM physicians;
+
+
+-- Task 11
+-- Show all allergies ordered by popularity.
+-- Remove NULL values from query.
