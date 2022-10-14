@@ -192,3 +192,19 @@ SELECT
 FROM admissions
 GROUP BY day_number
 ORDER BY number_of_admissions DESC
+
+
+-- Task 17
+-- Show all columns for patient_id 542's most recent admission_date.
+SELECT *
+FROM admissions
+WHERE patient_id = 542
+GROUP BY patient_id
+HAVING admission_date = MAX(admission_date);
+
+
+-- Task 18
+-- Show patient_id, attending_physician_id, and diagnosis for admissions
+-- that match one of the two criteria:
+-- 1. patient_id is an odd number and attending_physician_id is either 1, 5, or 19.
+-- 2. attending_physician_id contains a 2 and the length of patient_id is 3 characters.
