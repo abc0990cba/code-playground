@@ -58,3 +58,34 @@ WITH rolling_sum_table as (
 SELECT *
   FROM rolling_sum_table
  WHERE rolling_sum < 1000
+
+
+-- Example 5
+-- LAG() 
+-- The following SQL statement displays every patients
+-- first_name and the patient's first_name before them. 
+SELECT patient_id,
+       first_name,
+       LAG(first_name, 1) OVER() AS previous_name
+  FROM patients
+-- output:
+-- 1 | Donald |	NULL
+-- 2 | Mickey |	Donald
+-- 3 | Jiji   |	Mickey
+-- ...
+
+
+-- Example 6
+-- LEAD() 
+-- The following SQL statement displays every patients
+-- first_name and the patient's first_name after them. 
+SELECT patient_id,
+       first_name,
+       LEAD(first_name, 1) OVER() AS next_name
+  FROM patients
+-- output:
+-- 1 | Donald |	Mickey
+-- 2 | Mickey |	Jiji
+-- 3 | Jiji   |	Blair
+-- ...
+
