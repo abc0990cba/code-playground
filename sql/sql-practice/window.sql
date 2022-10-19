@@ -84,8 +84,54 @@ SELECT patient_id,
        LEAD(first_name, 1) OVER() AS next_name
   FROM patients
 -- output:
--- 1 | Donald |	Mickey
--- 2 | Mickey |	Jiji
--- 3 | Jiji   |	Blair
+--    1 | Donald    |	Mickey
+--    2 | Mickey    |	Jiji
+--    3 | Jiji      |	Blair
 -- ...
+-- 4530 |	Constance |	NULL
 
+
+-- Example 7
+-- FIRST_VALUE()
+-- The following SQL statement displays the oldest
+-- patient's birth_date for the province the patient is in. 
+SELECT patient_id,
+       province_id,
+       FIRST_VALUE(birth_date)
+       OVER (PARTITION BY province_id -- group by province_id
+             ORDER BY birth_date -- order it by birth_date for the first_value
+             -- select all rows in the partiton
+             ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+            ) AS oldest_birth_date
+  FROM patients
+ ORDER BY patient_id
+-- output:
+--    1 |	ON | 1918-12-12
+--    2	| ON | 1918-12-12
+-- ..
+-- 4322 |	BC | 1949-03-05
+-- 4323 |	AB | 1950-03-26
+-- ..
+
+
+-- Example 8
+-- LAST_VALUE()
+-- The following SQL statement displays the youngest
+-- patient's birth_date for the province the patient is in. 
+SELECT patient_id,
+       province_id,
+       LAST_VALUE(birth_date)
+       OVER (PARTITION BY province_id -- group by province_id
+             ORDER BY birth_date -- order it by birth_date for the last_value
+             -- select all rows in the partiton
+             ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+            ) AS youngest_birth_date
+  FROM patients
+ ORDER BY patient_id
+-- output:
+--    1 |	ON | 2018-07-21
+--    2	| ON | 2018-07-21
+-- ..
+--  228 |	NS | 2015-03-22
+--  229 |	AB | 2017-07-04
+-- ..
