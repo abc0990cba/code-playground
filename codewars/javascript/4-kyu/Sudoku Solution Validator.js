@@ -1,4 +1,8 @@
-// Task description (4 kuy)
+// 4 kyu
+// Sudoku Solution Validator
+// https://www.codewars.com/kata/529bf0e9bdf7657179000008
+
+// Task description:
 // Sudoku Background
 // Sudoku is a game played on a 9x9 grid.
 // The goal of the game is to fill all cells of the grid with digits from 1 to 9,
@@ -6,7 +10,6 @@
 // contain all of the digits from 1 to 9.
 // (More info at: http://en.wikipedia.org/wiki/Sudoku)
 
-// Sudoku Solution Validator
 // Write a function validSolution/ValidateSolution/valid_solution()
 // that accepts a 2D array representing a Sudoku board,
 // and returns true if it is a valid solution, or false otherwise.
@@ -44,7 +47,7 @@
 function validSolution(board) {
   const set = new Set();
   const size = 9;
-  
+
   // Horizontal cells check.
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
@@ -53,7 +56,7 @@ function validSolution(board) {
       }
       set.add(board[row][col]);
     }
-    
+
     if (set.size !== size) {
       return false;
     }

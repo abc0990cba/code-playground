@@ -1,5 +1,9 @@
-// Task description 4 kuy
+// 4 kyu
+// Next bigger number with the same digits
+// https://www.codewars.com/kata/55983863da40caa2c900004e
 
+
+// Task description:
 // Create a function that takes a positive integer and returns
 // the next bigger number that can be formed by rearranging its digits.
 // For example:
@@ -19,7 +23,7 @@
 // nextBigger(num: 111) // returns nil
 // nextBigger(num: 531) // returns nil
 
-// Solution 1
+
 function nextBigger(num) {
   let digits = num.toString().split('');
 
@@ -27,7 +31,7 @@ function nextBigger(num) {
   let pivotIndex = -1;
   for (let i = digits.length - 1; i > 0; i--) {
     const rightDigit = Number(digits[i]);
-    const leftDigit = Number(digits[i - 1]); 
+    const leftDigit = Number(digits[i - 1]);
     if (rightDigit > leftDigit) {
       pivotIndex = i - 1;
       break;
@@ -64,7 +68,7 @@ function nextBigger(num) {
   // Delete the smallest digit (in the right part) that is larger than the pivot
   // from right part.
   rightDigits.splice(smallestIndex, 1);
-  
+
   rightDigits.push(pivot);
   rightDigits = rightDigits.sort();
 

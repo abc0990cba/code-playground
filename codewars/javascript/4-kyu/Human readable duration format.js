@@ -1,3 +1,8 @@
+// 4 kyu
+// Human readable duration format
+// https://www.codewars.com/users/kramax42/completed_solutions
+
+// Task description:
 // Your task in order to complete this Kata is to write
 // a function which formats a duration,
 // given as a number of seconds, in a human-friendly way.

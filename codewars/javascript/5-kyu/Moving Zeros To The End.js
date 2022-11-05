@@ -1,4 +1,8 @@
-// Task description 5kuy
+// 5 kyu
+// Moving Zeros To The End
+// https://www.codewars.com/kata/52597aa56021e91c93000cb0
+
+// Task description: 
 // Write an algorithm that takes an array
 // and moves all of the zeros to the end,
 // preserving the order of the other elements.
@@ -22,5 +26,5 @@ function moveZeros2(arr) {
     const arrOnlyWithZeros = arr.filter(x => x === 0);
 
     return arrWithoutZero.concat(arrOnlyWithZeros);
-  }
+}
 

@@ -1,4 +1,8 @@
-// Task(4 kyu) description:
+// 4 kyu
+// Permutations
+// https://www.codewars.com/kata/5254ca2719453dcc0b00027d
+
+// Task description:
 // In this kata you have to create all permutations of a non empty input string and remove duplicates,
 // if present. This means, you have to shuffle all letters from the input in all possible orders.
 
@@ -14,17 +18,17 @@
 
 // Solution 1.
 function permutations1(str) {
-  if(str.length == 1) {
+  if (str.length == 1) {
     return [str];
   }
-  
+
   let arr = str.split('');
   let tmp = arr.slice();
   const heads = [];
   const result = [];
- 
+
   arr.forEach((elem, i, arr) => {
-    if(heads.indexOf(elem) == -1) {
+    if (heads.indexOf(elem) == -1) {
       heads.push(elem);
       tmp.splice(tmp.indexOf(elem), 1); // Removes 1 item(elem)
       permutations(tmp.join('')).forEach((w) => result.push(elem + w));
@@ -36,10 +40,10 @@ function permutations1(str) {
 
 // Solution 2.
 const unique = xs => [...new Set(xs)];
-const concat = (a, b) => [...a, ...b]; 
+const concat = (a, b) => [...a, ...b];
 const drop = i => xs => [...xs.slice(0, i), ...xs.slice(i + 1)];
 
-const permute = (x, i, xs) => 
+const permute = (x, i, xs) =>
   combinations(drop(i)(xs)).map(y => x + y);
 
 const combinations = s =>

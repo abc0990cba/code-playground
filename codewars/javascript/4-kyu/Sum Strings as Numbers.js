@@ -1,3 +1,9 @@
+// 4 kyu
+// Sum Strings as Numbers
+// https://www.codewars.com/users/kramax42/completed_solutions
+
+
+// Task description:
 // Given the string representations of two integers,
 // return the string representation of the sum of those integers.
 

@@ -1,5 +1,8 @@
+// 6 kyu
+// "this" is an other problem
+// https://www.codewars.com/kata/547f1a8d4a437abdf800055c
 
-// Task description 6kuy:
+// Task description:
 // After you've solved @priyankaherur's problem ( http://www.codewars.com/kata/this-is-a-problem/javascript ) you may try to solve this other one.
 // The problem:
 // Having created a function NamedOne which takes first & last names as parameters and returns an object with firstName, lastName and fullName ( = firstName + a space + lastName ) properties which should be all accessibles, we discovered that "accessible" also means "mutable".

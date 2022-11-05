@@ -1,4 +1,8 @@
-// Task 1 : Counting 1: I Want Some Subsets, Not All! 6 kyu
+// 6 kyu
+// Counting 1: I Want Some Subsets, Not All!
+// https://www.codewars.com/kata/591392af88a4994caa0000e0
+
+// Task description
 // We have a set of consecutive numbers from 1 to n.
 // We want to count all the subsets that do not contain consecutive numbers.
 // E.g. If our set S1 is equal to [1,2,3,4,5] The subsets that fulfill these property are:
@@ -33,7 +37,7 @@ function f(n) {
 function f(n) {
   let a = 0;
   let b = 1;
-  
+
   for (let i = 1; i < n; i++) {
     [a, b] = [b, a + b + 1];
   }
