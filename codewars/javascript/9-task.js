@@ -48,7 +48,7 @@
 // must not be greater than any valid more significant unit of time.
 
 
-function formatDuration(seconds) {
+function formatDuration1(seconds) {
     if (seconds === 0) {
         return 'now';
     }
@@ -78,7 +78,7 @@ function formatDuration(seconds) {
             resultStrArr.push(resultTuple[i] + ' ' + typeArr[i] + 's');
         }
     }
-    
+
     let resultStr = '';
     for (let i = 0; i < resultStrArr.length; i++) {
         if (i === resultStrArr.length - 2) {
@@ -92,4 +92,41 @@ function formatDuration(seconds) {
         }
     }
     return resultStr;
+}
+
+
+function formatDuration2(seconds) {
+    if (seconds === 0) {
+        return 'now';
+    }
+
+    const time = {
+        year: 60 * 60 * 24 * 365,
+        day: 60 * 60 * 24,
+        hour: 60 * 60,
+        minute: 60,
+        second: 1,
+    };
+
+    const result = [];
+
+    for (let key in time) {
+        if (seconds >= time[key]) {
+            let val = Math.floor(seconds / time[key]);
+            val += val > 1
+                ? ' ' + key + 's'
+                : ' ' + key
+            result.push(val);
+            seconds = seconds % time[key];
+        }
+    }
+
+    // /,([^,]*)$/
+    // https://regex101.com/ - regex explanation
+    // 'aaa, bbb, ccc' -> 'aaa, bbb and ccc' 
+    return (
+        result.length > 1
+            ? result.join(', ').replace(/,([^,]*)$/, ' and' + '$1')
+            : result[0]
+    );
 }
