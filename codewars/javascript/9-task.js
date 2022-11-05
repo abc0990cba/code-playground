@@ -48,6 +48,7 @@
 // must not be greater than any valid more significant unit of time.
 
 
+// Solution 1
 function formatDuration1(seconds) {
     if (seconds === 0) {
         return 'now';
@@ -95,6 +96,7 @@ function formatDuration1(seconds) {
 }
 
 
+// Solution 2
 function formatDuration2(seconds) {
     if (seconds === 0) {
         return 'now';
