@@ -1,6 +1,6 @@
 // 4 kyu
-// 
-// 
+// Strings Mix
+// https://www.codewars.com/kata/5629db57620258aa9d000014
 
 // Task description
 // Given two strings s1 and s2, we want to visualize how different the two strings are.
