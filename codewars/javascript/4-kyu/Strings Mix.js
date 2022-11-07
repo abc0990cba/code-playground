@@ -55,8 +55,8 @@ function mix(s1, s2) {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   const makeCharObjects = char => {
-      const s1Count = s1.split('').filter(x => x === char).length,
-            s2Count = s2.split('').filter(x => x === char).length,
+      const s1Count = s1.split('').filter(c => c === char).length,
+            s2Count = s2.split('').filter(c => c === char).length,
             maxCount = Math.max(s1Count, s2Count);
     
       return {
@@ -70,16 +70,17 @@ function mix(s1, s2) {
       };
     }
   
-  const sortCharObjects = (a, b) => 
-                b.count - a.count
-             || (a.src + a.char > b.src + b.char ? 1 : -1);
+  const sortCharObjects = (a, b) => b.count - a.count 
+               || (a.src + a.char > b.src + b.char ? 1 : -1);
 
   const makeResultStringFromChar = c => `${c.src}:${c.char.repeat(c.count)}`;
   
-  return alphabet
-    .map(makeCharObjects)
-    .filter(c => c.count > 1)
-    .sort(sortCharObjects)
-    .map(makeResultStringFromChar)
-    .join('/');
+  return (
+    alphabet
+      .map(makeCharObjects)
+      .filter(c => c.count > 1)
+      .sort(sortCharObjects)
+      .map(makeResultStringFromChar)
+      .join('/')
+  );
 }
