@@ -37,3 +37,9 @@ function countSquares2(n) {
   }
   return n * n + countSquares(n - 1);
 }
+
+// Solution 3:
+function countSquares3(n) {
+  return n * (n + 1) * (2 * n + 1) / 6;
+}
+
