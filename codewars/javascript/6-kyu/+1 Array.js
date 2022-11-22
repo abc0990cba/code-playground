@@ -13,6 +13,7 @@
 // [4, 3, 2, 5] would return [4, 3, 2, 6]
 
 // Solution
+// https://forum.freecodecamp.org/t/got-on-codewars-js-challenge/454257/19
 // More specifically, to solve this you are to add 1 to the array from the end
 // to the beginning, taking into consideration the following two cases:
 
@@ -41,4 +42,18 @@ function upArray(arr) {
     }
 
     return arr;
+}
+
+// Solution 2:
+const upArray = arr => {
+    if (!arr.length) return null;
+    if (arr.some(val => val < 0 || val > 9)) return null;
+
+    const str = arr.join(``);
+    // _ - the matched substring.
+    // $1 and $1 -  string found by a capture group
+    // (including named capturing groups),
+    const replacer = (_, $1, $2) => ++$1 + `0`.repeat($2.length);
+    const arrOfChar = [...str.replace(/(\d)(9*$)/, replacer)];
+    return arrOfChar.map(Number);
 }
