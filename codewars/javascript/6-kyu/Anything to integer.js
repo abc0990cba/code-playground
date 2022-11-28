@@ -9,7 +9,8 @@
 // Also, Math.floor(), parseInt() and parseFloat() are disabled for your unconvenience.
 // Onegaishimasu!
 
-function toInteger(n) {
+// Solution 1
+function toInteger1(n) {
   if (isNaN(n)) {
     return 0;
   }
@@ -20,3 +21,9 @@ function toInteger(n) {
   }
   return truncedN;  
 }
+
+// Solution 2
+const toInteger2 = n => ~~n;
+
+// Solution 3
+const toInteger2 = n => 0 | n;
