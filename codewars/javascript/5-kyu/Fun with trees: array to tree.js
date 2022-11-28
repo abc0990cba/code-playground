@@ -27,7 +27,7 @@ function arrayToTree(array, i = 0) {
   return (
     new TreeNode(array[i],
                  arrayToTree(array, 2 * i + 1),
-                 arrayToTree(array, 2 * i + 2));
+                 arrayToTree(array, 2 * i + 2))
   )
 }
 
