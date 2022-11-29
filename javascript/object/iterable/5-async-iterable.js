@@ -14,7 +14,6 @@ let asyncRange = {
           return { 
               done: false,
               value: this.current++ 
-              
           };
         } else {
           return {
@@ -31,3 +30,5 @@ let asyncRange = {
     console.log(value); // 1 ..1sec.. 2 ..1sec.. 3 ..1sec.. 4 ..1sec.. 5
   }
 })()
+
+// let arr = [...asyncRange] - will not work for async iterator
