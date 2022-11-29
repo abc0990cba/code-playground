@@ -8,7 +8,7 @@ let asyncRange = {
       last: this.to,
 
       async next() {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // (3)
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         if (this.current <= this.last) {
           return { 
