@@ -1,3 +1,4 @@
+// Example 1
 interface Animal {
   live(): void;
 }
@@ -14,6 +15,7 @@ type Example2 = RegExp extends Animal ? number : string;
 
 ///////////////////////////////////////////////////////////
 
+// Example 2
 type IsString<T> = T extends string 
   ? true
   : false
@@ -26,6 +28,7 @@ type B = IsString<number>;
 
 ///////////////////////////////////////////////////////////
 
+// Example 3
 type MessageOf<T> = T extends {message: unknown} ? T['message'] : never;
 
 interface Email {
@@ -44,6 +47,7 @@ type DogMessageContents = MessageOf<Dog>;
 
 ///////////////////////////////////////////////////////////
 
+// Example 4
 type Flatten<T> = T extends any[] ? T[number] : T;
 // or
 // Here, we used the infer keyword to declaratively introduce
@@ -62,6 +66,7 @@ type Num = Flatten<number>;
 
 ///////////////////////////////////////////////////////////
 
+// Example 5
 type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
   ? Return
   : never;
@@ -76,4 +81,33 @@ type S = GetReturnType<(x: string) => string>;
 type Bools = GetReturnType<(a: boolean, b: boolean) => boolean[]>;
       
 ///////////////////////////////////////////////////////////
-              
+
+// Example 6
+interface StringContainer {
+    value: string;
+    format(): string;
+    split(): string[];
+}
+
+interface NumberContainer {
+    value: number;
+    nearestPrime: number;
+    round(): number;
+}
+
+type Item<T> = {
+    id: T,
+    container: T extends string ? StringContainer : NumberContainer;
+}
+
+const item: Item<string> = {
+    id: 'wqe',
+    container: {
+      value: 'asd',
+      format: () => 'format',
+      split: () => ['abc'],
+    }
+}
+
+// item.container is StringContainer
+const { container } = item;
