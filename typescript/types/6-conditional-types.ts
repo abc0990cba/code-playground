@@ -67,22 +67,6 @@ type Num = Flatten<number>;
 ///////////////////////////////////////////////////////////
 
 // Example 5
-type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
-  ? Return
-  : never;
-
-// N is number 
-type N = GetReturnType<() => number>;
-     
-// S is string
-type S = GetReturnType<(x: string) => string>;
-     
-// Bools is boolean[]
-type Bools = GetReturnType<(a: boolean, b: boolean) => boolean[]>;
-      
-///////////////////////////////////////////////////////////
-
-// Example 6
 interface StringContainer {
     value: string;
     format(): string;
