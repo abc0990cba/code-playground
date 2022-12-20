@@ -95,3 +95,19 @@ const item: Item<string> = {
 
 // item.container is StringContainer
 const { container } = item;
+
+///////////////////////////////////////////////////////////
+
+// Example 6
+type Recursive<T> = T extends string[] 
+                      ? string
+                      : (T extends number[] ? number : never);
+
+// N is number
+type N = Recursive<number[]>;
+
+// V is string
+type V = Recursive<string[]>;
+
+// K is never
+type K = Recursive<string>;
