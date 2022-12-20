@@ -32,28 +32,6 @@ type RF = ReturnType<F>;
 
 /////////////////////////////////////////////
 
-// InstanceType
-
-type G = { new(): H };
-type H = { h: number};
-
-// I is { h: number; }
-type I = InstanceType<G>
-
-type Constructor = new (...args: any[]) => any;
-
-function factory<T extends Constructor>(ctor: T): InstanceType<T> {
-  return new ctor();
-};
-
-class AF { prop = 'simple_prop'; }
-
-const af = factory(AF);
-
-console.log(af); // AF: { "prop": "simple_prop" } 
-
-/////////////////////////////////////////////
-
 // Awaited
 
 // AA is number
