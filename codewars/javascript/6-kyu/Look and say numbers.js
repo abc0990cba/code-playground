@@ -32,7 +32,7 @@ function lookAndSay(data, length) {
 }
 
 // Solution 2
-function lookAndSay(data, length) {
+function lookAndSay2(data, length) {
   const next = (token) => '' + token.length + token[0];
   const process= () => data = data.match(/(\d)\1*/g).map(next).join('');
   return Array.apply(0, Array(length)).map(process);
