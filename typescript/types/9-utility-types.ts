@@ -67,3 +67,90 @@ type CC = Awaited<string | Promise<Promise<boolean>>>;
 
 // DD is string | number
 type DD = Awaited<Promise<string | Promise<number>>>;
+
+/////////////////////////////////////////////
+
+// Partial
+interface Todo {
+  title: string;
+  description: string;
+}
+ 
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return { ...todo, ...fieldsToUpdate };
+}
+ 
+const todo1 = {
+  title: "organize desk",
+  description: "clear clutter",
+};
+ 
+const todo2 = updateTodo(todo1, {
+  description: "throw out trash",
+});
+
+/////////////////////////////////////////////
+
+// Required
+interface Props {
+  a?: number;
+  b?: string;
+}
+ 
+const obj: Props = { a: 5 };
+ 
+// Property 'b' is missing in type '{ a: number; }' but required
+// in type 'Required<Props>'.(
+// const obj2: Required<Props> = { a: 5 };
+
+/////////////////////////////////////////////
+
+// Readonly
+interface TT {
+  title: string;
+}
+ 
+const tt: Readonly<TT> = {
+  title: "Delete inactive users",
+};
+ 
+// annot assign to 'title' because it is a read-only property.
+// tt.title = "Hello";
+
+/////////////////////////////////////////////
+
+// Record
+interface CatInfo {
+  age: number;
+  breed: string;
+}
+ 
+type CatName = "miffy" | "boris" | "mordred";
+ 
+const cats: Record<CatName, CatInfo> = {
+  miffy: { age: 10, breed: "Persian" },
+  boris: { age: 5, breed: "Maine Coon" },
+  mordred: { age: 16, breed: "British Shorthair" },
+};
+
+/////////////////////////////////////////////
+
+// Pick and Omit
+interface Todo2 {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+ 
+type TodoPreview = Pick<Todo2, "title" | "completed">;
+const todo3: TodoPreview = {
+  title: "Clean room",
+  completed: false,
+};
+
+type TodoInfo = Omit<Todo2, "completed" | "createdAt">;
+const todoInfo: TodoInfo = {
+  title: "Pick up kids",
+  description: "Kindergarten closes at 5pm",
+};
+ 
