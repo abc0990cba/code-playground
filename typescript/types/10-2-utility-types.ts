@@ -132,7 +132,8 @@ const fiveToHex: FiveToHex = toHex2.bind(5);
  
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// OmitThisParameter   
+// ThisType 1
+// Note that the noImplicitThis flag must be enabled to use this utility.
 type ObjectDescriptor<D, M> = {
   data?: D;
   methods?: M & ThisType<D & M>; // Type of 'this' in methods is D & M
@@ -157,3 +158,16 @@ let obj = makeObject({
 obj.x = 10;
 obj.y = 20;
 obj.moveBy(5, 5);
+
+
+// ThisType 2
+interface HelperThisValue {
+    logError: (error: string) => void;
+}
+
+let helperFunctions: { [name: string]: Function } & ThisType<HelperThisValue> = {
+    hello: function() {
+        this.logError("Error: Something went wrong!"); // TypeScript successfully recognizes that "logError" is a part of "this".
+        // this.update(); // TS2339: Property 'update' does not exist on HelperThisValue.
+    }
+}
