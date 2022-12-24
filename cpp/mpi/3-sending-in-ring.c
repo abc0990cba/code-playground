@@ -22,39 +22,38 @@ int main(int argc, char** argv) {
 			// Enter value to send (0 to stop)
 			scanf("%d", &value);
 			MPI_Send(&value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
-		} else {
+		}
+		else {
 			MPI_Recv(&value, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);
 			if (rank < n_procs - 1) {
 				MPI_Send(&value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
 			}
 		}
 		printf("Process %d got %d\n", rank, value);
+		fflush(stdout);
 	} while (value > 0);
 
 	MPI_Finalize();
 	return 0;
 }
 
-// Input:
-// 23
-// 56
-// 2
-// 0
-
-// Output:
-// Process 0 got 23
-// Process 0 got 56
-// Process 0 got 2
+// Input: 4
+// Process 0 got 4
+// Process 1 got 4
+// Process 2 got 4
+// Process 3 got 4
+// Input: 6
+// Process 0 got 6
+// Process 1 got 6
+// Process 2 got 6
+// Process 3 got 6
+// Input: 77
+// Process 0 got 77
+// Process 1 got 77
+// Process 2 got 77
+// Process 3 got 77
+// Input: 0
 // Process 0 got 0
-// Process 2 got 23
-// Process 2 got 56
-// Process 2 got 2
-// Process 2 got 0
-// Process 3 got 23
-// Process 3 got 56
-// Process 3 got 2
-// Process 3 got 0
-// Process 1 got 23
-// Process 1 got 56
-// Process 1 got 2
 // Process 1 got 0
+// Process 2 got 0
+// Process 3 got 0
