@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
         printf("Running with %d thread(s)\n", omp_get_num_threads());
     }
 
-    
     double start_time;
     double end_time;
 
