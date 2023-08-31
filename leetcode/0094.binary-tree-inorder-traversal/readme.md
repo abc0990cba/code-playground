@@ -22,3 +22,7 @@ The number of nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
  
 Follow up: Recursive solution is trivial, could you do it iteratively?
+
+Iterative algorithm:
+![image](https://github.com/kramax42/code-playground/assets/69054844/577379f3-3e88-4ff4-a4aa-97a7640dc1b7)
+
