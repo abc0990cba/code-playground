@@ -7,25 +7,24 @@
  * }
  */
 
-// Solution 1. Recursive
 // Time complexity: O(n)
-// Space complexity: O(n
+// Space complexity: O(n)
 
 /**
  * @param {TreeNode} root
  * @return {number[]}
  */
 const inorderTraversal = (root) => {
-    const traversal = [];
+    const inorder = [];
     solve(root);
     
     function solve(root) {
         if(root !== null) {
             solve(root.left);
-            traversal.push(root.val);
+            inorder.push(root.val);
             solve(root.right);
         }
     }
 
-    return traversal;
+    return inorder;
 };
