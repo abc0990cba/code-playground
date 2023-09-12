@@ -62,7 +62,34 @@ SELECT product_name,
        group_name,
        AVG(price) OVER (
         PARTITION BY group_name
-       ) AS average_price
+        ORDER BY price DESC
+       ) AS average_price,
+       SUM(price) OVER (
+        PARTITION BY group_name
+        ORDER BY price DESC
+       ) AS sum_price
   FROM products
  INNER JOIN product_groups USING(group_id);
+
+--Shorter version with WINDOW clause:
+SELECT product_name,
+       price,
+       group_name,
+       AVG(price) OVER w AS average_price,
+       SUM(price) OVER w AS sum_price
+  FROM products
+ INNER JOIN product_groups USING(group_id)
+WINDOW w as (PARTITION BY group_name
+                 ORDER BY price DESC);
 ```
+
+### Window functions:
+- ROW_NUMBER
+> Number the current row within its partition starting from 1.
+
+- RANK
+> Rank the current row within its partition with gaps.
+
+- DENSE_RANK
+>  Rank the current row within its partition without gaps.
+
