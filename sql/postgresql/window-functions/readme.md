@@ -83,13 +83,51 @@ WINDOW w as (PARTITION BY group_name
                  ORDER BY price DESC);
 ```
 
-### Window functions:
-- ROW_NUMBER
-> Number the current row within its partition starting from 1.
+## Window functions:
 
-- RANK
-> Rank the current row within its partition with gaps.
+### ROW_NUMBER, RANK, DENSE_RANK
+```sql
+SELECT product_name,
+       price,
+       group_name,
+       ROW_NUMBER() OVER w,
+       RANK() OVER w,
+       DENSE_RANK() OVER w
+  FROM products
+ INNER JOIN product_groups USING(group_id)
+WINDOW w as (PARTITION BY group_name
+                 ORDER BY price);
+```
 
-- DENSE_RANK
->  Rank the current row within its partition without gaps.
 
+### FIRST_VALUE AND LAST_VALUE
+```sql
+SELECT product_name,
+       price,
+       group_name,
+       LAST_VALUE(price) OVER w AS highest_price_per_group,
+       FIRST_VALUE(price) OVER w AS lowest_price_per_group
+  FROM products
+ INNER JOIN product_groups USING(group_id)
+WINDOW w as (PARTITION BY group_name
+                 ORDER BY price RANGE BETWEEN UNBOUNDED PRECEDING
+		                                      AND UNBOUNDED FOLLOWING);
+-- we added the frame clause RANGE BETWEEN UNBOUNDED PRECEDING
+-- AND UNBOUNDED FOLLOWING because by default the frame clause
+-- is  RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW.
+```
+
+### LAG, LEAD
+```sql
+SELECT product_name,
+       price,
+       group_name,
+       LAG(price, 2) OVER w AS before_prev_price,
+       LAG(price) OVER w AS prev_price,
+       price - LAG(price) OVER w AS curr_prev_diff,
+       LEAD(price) OVER w AS next_price
+  FROM products
+ INNER JOIN product_groups USING(group_id)
+WINDOW w as (PARTITION BY group_name
+                 ORDER BY price);
+```
