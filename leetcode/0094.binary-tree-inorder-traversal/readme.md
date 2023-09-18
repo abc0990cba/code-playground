@@ -1,4 +1,4 @@
-# Binary Tree Traversals:
+# 94 - Binary Tree Traversals:
 ![image](https://github.com/kramax42/code-playground/assets/69054844/f1269879-297b-435f-b8c4-0aa2df00ea89)
 
 ---
