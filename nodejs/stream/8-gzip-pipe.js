@@ -8,5 +8,5 @@ const gz = zlib.createGzip();
 rs.pipe(gz).pipe(ws);
 
 rs.on("end", () => {
-    console.log("Done.");
-})
+  console.log("Done.");
+});

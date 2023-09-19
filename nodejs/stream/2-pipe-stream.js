@@ -7,11 +7,11 @@ writeableStream0.write("Finish");
 
 let readableStream = fs.createReadStream("hello.txt", "utf-8");
 
-// Without pipe. 
+// Without pipe.
 let writeableStream1 = fs.createWriteStream("copy1.txt");
 readableStream.on("data", function (chunk) {
-    writeableStream1.write(chunk);
-})
+  writeableStream1.write(chunk);
+});
 
 // With pipe.
 let writeableStream2 = fs.createWriteStream("copy2.txt");

@@ -4,7 +4,7 @@ let writeableStream = fs.createWriteStream("hello.txt");
 
 writeableStream.write("Start!\n");
 for (let i = 1; i <= 1e4; ++i) {
-    writeableStream.write("String string string string string string.\n");
+  writeableStream.write("String string string string string string.\n");
 }
 writeableStream.end("Finish.");
 
@@ -20,8 +20,7 @@ let chunksCounter = 0;
 // is 16384 bytes (16kb) so if you don't override the parameter,
 // the stream will read 16kb chunks and pass them to you to process.
 readableStream.on("data", function (chunk) {
-    ++chunksCounter;
-    console.log(`chunk ${chunksCounter}: `, chunk);
-    console.log("Chunks amount: ", chunksCounter);
+  ++chunksCounter;
+  console.log(`chunk ${chunksCounter}: `, chunk);
+  console.log("Chunks amount: ", chunksCounter);
 });
-
