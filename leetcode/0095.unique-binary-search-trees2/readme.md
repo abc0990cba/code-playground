@@ -41,13 +41,15 @@ One thing to notice is that, after the recursive, we should have a root node to 
 That is to say, if we have sequence [1,2,3,4,5] and we pick 3 as root.
 L would be [1,2], R [4,5].
 It’s easy to see that the Left tree could have these two shape.
-  1        2                                                                       3           3
-  / \      / \          ==adding the subtree to left side with 3 as root ==>       /           /
-null 2    1   null                                                                1           2
-                                                                                 / \         / \
-                                                                               null 2       1  null
+
+    1         2                         3          3
+   / \       / \        ----->         /          /
+null  2     1   null                  1          2
+                                     / \        / \
+                                  null  2      1   null
+  
 The right part is the same, so I just draw left part on it.
 Finally, push the new tree to the vector and return it to upper recursive.
 
-time: O(catalan(n)), https://goo.gl/umK2Fl
+time: O(catalan(n)), https://en.wikipedia.org/wiki/Catalan_number
 space: O(log(n)), tree space is log(n) with total node n
