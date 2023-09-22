@@ -51,6 +51,60 @@ EXPLAIN (ANALYZE) SELECT * FROM foo;
 --  Execution Time: 1712.969 ms
 -- (3 rows)
 
-
 -- rows — the actual number of rows received during Seq Scan.
 -- loops — how many times the Seq Scan operation had to be performed
+
+
+EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM foo;
+--                                                    QUERY PLAN                                                   
+-- ----------------------------------------------------------------------------------------------------------------
+--  Seq Scan on foo  (cost=0.00..18918.18 rows=1058418 width=36)
+--  (actual time=0.018..869.210 rows=1000010 loops=1)
+--  Buffers: shared hit=8334
+--  Planning:
+--    Buffers: shared hit=7
+--  Planning Time: 0.078 ms
+--  Execution Time: 1665.123 ms
+-- (6 rows)
+
+-- Buffers: shared read — the number of blocks read from the disk.
+-- Buffers: shared hit — the number of blocks read from the PostgreSQL cache
+
+-- After repeating apply command above, the number of shared hit will increase 
+-- Cache reads are faster than disk reads.
+-- You can notice this trend by tracking the Total runtime value.
+-- The cache size is determined by the shared_buffers constant
+-- in the postgresql.conf file.
+
+
+EXPLAIN SELECT * FROM foo WHERE c1 > 500;
+--                          QUERY PLAN                          
+-- -------------------------------------------------------------
+-- Seq Scan on foo  (cost=0.00..21564.22 rows=352806 width=36)
+-- Filter: (c1 > 500)
+-- (2 rows)
+
+
+CREATE INDEX ON foo(c1);
+EXPLAIN SELECT * FROM foo WHERE c1 > 500;
+--                                    QUERY PLAN                                    
+-- ---------------------------------------------------------------------------------
+--  Bitmap Heap Scan on foo  (cost=6247.79..18748.50 rows=333337 width=36)
+--  Recheck Cond: (c1 > 500)
+--  -> Bitmap Index Scan on foo_c1_idx  (cost=0.00..6164.45 rows=333337 width=0)
+--       Index Cond: (c1 > 500)
+-- (4 rows)
+
+EXPLAIN (ANALYZE) SELECT * FROM foo WHERE c1 > 500;
+--                                    QUERY PLAN                                                            
+----------------------------------------------------------------------------------
+--  Bitmap Heap Scan on foo  (cost=6247.79..18748.50 rows=333337 width=36)
+--  (actual time=64.561..936.237 rows=999500 loops=1)
+--    Recheck Cond: (c1 > 500)
+--    Heap Blocks: exact=8330
+--    ->  Bitmap Index Scan on foo_c1_idx  (cost=0.00..6164.45 rows=333337 width=0)
+--        (actual time=63.173..63.174 rows=999500 loops=1)
+--          Index Cond: (c1 > 500)
+--  Planning Time: 0.219 ms
+--  Execution Time: 1728.708 ms
+-- (7 rows)
