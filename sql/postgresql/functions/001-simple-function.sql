@@ -12,7 +12,8 @@ create function get_all_names(min_id int)
   language plpgsql
 as
 $$
-  declare names text;
+declare
+  names text;
 begin 
   select string_agg(name, ', ') into names 
     from employee 
