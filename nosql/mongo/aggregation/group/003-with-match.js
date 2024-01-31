@@ -14,25 +14,25 @@ db.zipcodes.insertMany([
 ])
 
 
-db.zipcodes.aggregate( [
+db.zipcodes.aggregate([
    { $group: { _id: "$state", totalPop: { $sum: "$pop" } } },
-] )
+])
 // Output:
 // { "_id" : "MA", "totalPop" : 56847 }
 // { "_id" : "OH", "totalPop" : 22173 }
 // { "_id" : "TX", "totalPop" : 9784 }
 
-db.zipcodes.aggregate( [
+db.zipcodes.aggregate([
   { $group: { _id: "$state", totalPop: { $sum: "$pop" } } },
   { $match: { totalPop: { $gte: 10000 } } }
-] )
+])
 // Output:
 // { "_id" : "MA", "totalPop" : 56847 }
 // { "_id" : "OH", "totalPop" : 22173 }
 
-db.zipcodes.aggregate( [
+db.zipcodes.aggregate([
    { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } }
-] )
+])
 // Output:
 // { "_id" : { "state" : "MA", "city" : "AGAWAM" }, "pop" : 15338 }
 // { "_id" : { "state" : "OH", "city" : "HUNTSBURG" }, "pop" : 1804 }
