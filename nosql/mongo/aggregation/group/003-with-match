@@ -13,6 +13,7 @@ db.zipcodes.insertMany([
 
 ])
 
+
 db.zipcodes.aggregate( [
    { $group: { _id: "$state", totalPop: { $sum: "$pop" } } },
 ] )
@@ -28,3 +29,26 @@ db.zipcodes.aggregate( [
 // Output:
 // { "_id" : "MA", "totalPop" : 56847 }
 // { "_id" : "OH", "totalPop" : 22173 }
+
+db.zipcodes.aggregate( [
+   { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } }
+] )
+// Output:
+// { "_id" : { "state" : "MA", "city" : "AGAWAM" }, "pop" : 15338 }
+// { "_id" : { "state" : "OH", "city" : "HUNTSBURG" }, "pop" : 1804 }
+// { "_id" : { "state" : "OH", "city" : "JEFFERSON" }, "pop" : 8242 }
+// { "_id" : { "state" : "OH", "city" : "GRAFTON" }, "pop" : 12127 }
+// { "_id" : { "state" : "TX", "city" : "SIMMS" }, "pop" : 3617 }
+// { "_id" : { "state" : "TX", "city" : "QUEEN CITY" }, "pop" : 4376 }
+// { "_id" : { "state" : "TX", "city" : "OMAHA" }, "pop" : 1791 }
+// { "_id" : { "state" : "MA", "city" : "CUSHMAN" }, "pop" : 36963 }
+// { "_id" : { "state" : "MA", "city" : "BARRE" }, "pop" : 4546 }
+
+db.zipcodes.aggregate( [
+  { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
+  { $group: { _id: "$_id.state", avgCityPop: { $avg: "$pop" } } }
+] )
+// Output:
+// { "_id" : "OH", "avgCityPop" : 7391 }
+// { "_id" : "MA", "avgCityPop" : 18949 }
+// { "_id" : "TX", "avgCityPop" : 3261.3333333333335 }
