@@ -15,6 +15,13 @@ EXPLAIN SELECT * FROM foo;
 --  Seq Scan on foo  (cost=0.00..18918.18 rows=1058418 width=36)
 -- (1 row)
 
+EXPLAIN SELECT 1 FROM foo;
+--                          QUERY PLAN                          
+-- -------------------------------------------------------------
+--  Seq Scan on foo  (cost=0.00..18918.18 rows=1058418 width=4)
+-- (1 row)
+
+
 -- EXPLAIN reports that
 -- Seq Scan is used — sequential, block by block, reading of foo table data.
 -- cost - This is not time, but a kind of spherical concept in a vacuum,
