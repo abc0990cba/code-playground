@@ -33,8 +33,8 @@ EXPLAIN SELECT 1 FROM foo;
 
 
 INSERT INTO foo
-  SELECT i, md5(random()::TEXT)
-  FROM generate_series(1, 10) AS i;
+     SELECT i, md5(random()::TEXT)
+       FROM generate_series(1, 10) AS i;
 
 ANALYZE foo;
 EXPLAIN SELECT * FROM foo;
@@ -114,4 +114,25 @@ EXPLAIN (ANALYZE) SELECT * FROM foo WHERE c1 > 500;
 --          Index Cond: (c1 > 500)
 --  Planning Time: 0.219 ms
 --  Execution Time: 1728.708 ms
+-- (7 rows)
+
+EXPLAIN SELECT * FROM foo WHERE c1 < 500;
+--                                    QUERY PLAN                                    
+-- ---------------------------------------------------------------------------------
+--  Bitmap Heap Scan on foo  (cost=6243.76..18744.42 rows=333333 width=36)
+--    Recheck Cond: (c1 < 500)
+--    ->  Bitmap Index Scan on foo_c1_idx  (cost=0.00..6160.42 rows=333333 width=0)
+--          Index Cond: (c1 < 500)
+-- (4 rows)
+
+EXPLAIN (ANALYZE) SELECT * FROM foo WHERE c1 < 500;
+--                                                         QUERY PLAN                                                          
+-----------------------------------------------------------------------------------------------------------------------------
+--  Bitmap Heap Scan on foo  (cost=6243.76..18744.42 rows=333333 width=36) (actual time=0.081..0.503 rows=499 loops=1)
+--    Recheck Cond: (c1 < 500)
+--    Heap Blocks: exact=5
+--    ->  Bitmap Index Scan on foo_c1_idx  (cost=0.00..6160.42 rows=333333 width=0) (actual time=0.068..0.069 rows=499 loops=1)
+--          Index Cond: (c1 < 500)
+--  Planning Time: 0.235 ms
+--  Execution Time: 0.917 ms
 -- (7 rows)
