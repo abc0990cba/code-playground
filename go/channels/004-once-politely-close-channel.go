@@ -4,7 +4,7 @@ import (
 	"sync"
 )
 
-// httpsx://www.leolara.me/blog/closing_a_go_channel_written_by_several_goroutines/
+// https://go101.org/article/channel-closing.html
 
 type MyChannel struct {
 	ch   chan int
