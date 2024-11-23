@@ -19,6 +19,8 @@ func main() {
 	closingCh := make(chan struct{})
 	closedCh := make(chan struct{})
 
+	// https://groups.google.com/g/golang-nuts/c/lEKehHH7kZY/m/Ri2I2o8DAQAJ
+	// https://go.dev/play/p/qSWluYy4ifl
 	stop := func() {
 		select {
 		case closingCh <- struct{}{}:
