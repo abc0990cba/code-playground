@@ -47,6 +47,8 @@ func main() {
 
 	if err != nil {
 		fmt.Println(err.Error())
+	} else {
+		fmt.Println("Alice passed validation")
 	}
 
 	bob := Person{
@@ -58,5 +60,7 @@ func main() {
 
 	if err != nil {
 		fmt.Println(err.Error())
+	} else {
+		fmt.Println("Bob passed validation")
 	}
 }
