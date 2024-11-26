@@ -28,7 +28,9 @@ BEGIN
 END;
 $$;
 
--- DROP TABLE IF EXISTS shorturl_btree;
+------------------------------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS shorturl_btree;
 CREATE TABLE shorturl_btree (
     id serial primary key,
     key text not null,
