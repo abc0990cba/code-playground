@@ -1,3 +1,7 @@
+// Time complexity: O(n)
+// Space complexity:  O(1)
+// Sliding window, 2 pointers
+
 func maxProfit(prices []int) int {
     if len(prices) == 0 {
         return 0
