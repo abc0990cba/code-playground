@@ -12,7 +12,6 @@ The answer and all the intermediate calculations can be represented in a 32-bit 
  
 
 Example 1:
-
 Input: tokens = ["2","1","+","3","*"]
 Output: 9
 Explanation: ((2 + 1) * 3) = 9
