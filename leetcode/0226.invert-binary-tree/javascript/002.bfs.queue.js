@@ -35,13 +35,17 @@ const tree = {
 function invertTree(root) {
  if (!root) return null
  
- const tmp = root.left
- root.left = root.right
- root.right = tmp
- 
- 
- invertTree(root.left)
- invertTree(root.right) 
+ const queue = [root];
+
+ while(queue.length) {
+  const node = queue.shift();
+
+  [node.right, node.left] = [node.left,node.right];
+
+  if(node.left !== null) queue.push(node.left);
+  if(node.right !== null) queue.push(node.right);
+ }
+
  return root    
 };
 
@@ -51,7 +55,7 @@ function invertTree(root) {
 //   2     7
 //  / \   / \
 // 1   3 6   9
-console.log('orignial binary tree: ', tree);
+// console.log('orignial binary tree: ', tree);
 
 // Inverted Tree
 //      4
@@ -59,4 +63,4 @@ console.log('orignial binary tree: ', tree);
 //   7     2
 //  / \   / \
 // 9   6 3   1
-console.log('inverted binary tree: ', invertTree(tree));
+// console.log('inverted binary tree: ', invertTree(tree));

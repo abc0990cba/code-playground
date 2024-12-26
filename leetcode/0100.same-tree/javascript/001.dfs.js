@@ -19,7 +19,7 @@
  * @return {boolean}
  */
 const isSameTree = (left, right) =>  {
-    if(left === null && right === null) {
+    if(left === null &&   right === null) {
       return true;
     }
 
@@ -35,7 +35,7 @@ const isSameTree = (left, right) =>  {
     }
 
     const isLeftSubtreeSame = isSameTree(left.left, right.left);
-    const isRighttSubtreeSame = isSameTree(left.right, right.right);
+    const isRightSubtreeSame = isSameTree(left.right, right.right);
 
-    return isLeftSubtreeSame && isRighttSubtreeSame;
+    return isLeftSubtreeSame && isRightSubtreeSame;
 };
