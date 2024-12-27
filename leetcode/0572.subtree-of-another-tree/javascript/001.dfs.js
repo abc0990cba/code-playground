@@ -7,32 +7,39 @@
  * }
  */
 
-// Time Complexity: O(n)
-// Space Complexity: O(h) | Where h is the height of the tallest tree.
-// This is within the Call Stack 
-// In the worst case, a tree's number of nodes is it's height.
-// Thus it's argued the real space complexity is O(n)
-
 /**
  * @param {TreeNode} left
  * @param {TreeNode} right
  * @return {boolean}
  */
-const isSameTree = (left, right) =>  {
-    if(!left && !right) {
-      return true;
-    }
-
-    if(
-      !left && right ||
-      !right && left ||
-      left.val !== right.val
-    ) {
-      return false;
-    }
-
+function isSameTree(left, right) {
+  if(!left && !right) return true;
+  
+  if(left && right && right.val === left.val) {
     const isLeftSubtreeSame = isSameTree(left.left, right.left);
     const isRightSubtreeSame = isSameTree(left.right, right.right);
-
+    
     return isLeftSubtreeSame && isRightSubtreeSame;
+  }
+
+  return false;
+}
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} subRoot
+ * @return {boolean}
+ */
+function isSubtree(root, subRoot) {
+    if(!subRoot) return true;
+
+    if(!root) return false;
+
+    if(isSameTree(root, subRoot)) return true;
+
+    return (
+      isSubtree(root.left, subRoot) ||
+      isSubtree(root.right, subRoot)
+    );
 };
+
