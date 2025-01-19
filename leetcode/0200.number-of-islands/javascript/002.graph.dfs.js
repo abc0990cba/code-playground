@@ -13,9 +13,9 @@ var numIslands = function(grid) {
     let islandsNum = 0;
 
     const dfs = (r, c) => {
-      if(r < 0 && r >= ROWS
-        && c < 0 && c >= COLS 
-        && grid[r][c] === '0') return;
+      if(r < 0 || r >= ROWS
+        || c < 0 || c >= COLS 
+        || grid[r][c] === '0') return;
 
       grid[r][c] = '0';
       visited.add(`${r}:${c}`);
