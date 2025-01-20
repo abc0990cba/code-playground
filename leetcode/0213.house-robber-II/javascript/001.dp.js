@@ -7,7 +7,7 @@ var rob = function(nums) {
     let a = 0;
     let b = 0;
 
-    for(const num of nums) {
+    for(const num of arr) {
       const newB = Math.max(a + num, b);
       a = b;
       b = newB;
