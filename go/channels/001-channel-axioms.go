@@ -31,4 +31,10 @@ func main() {
 	// close(c6)
 	// a := <-c6
 	// log.Println(a) // 0
+
+	// 7 - write to nil channel cause deadlock
+	// var c7 chan int
+  // c7 <- 2
+
+	
 }
