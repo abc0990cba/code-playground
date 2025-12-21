@@ -33,12 +33,11 @@ Problem: Trees remain tall, operations become slow over time.
 2. Full Path Compression (Recursive)  
    ```go
     func find(x int) int {
-      if parent[x] != x {
-          parent[x] = find(parent[x])  // Recursively compress entire path
-      }
-      return parent[x]
-    }
-```
+         if parent[x] != x {
+             parent[x] = find(parent[x])  // Recursively compress entire path
+         }
+         return parent[x]
+    }```
 How it works: When finding root for node X, it recursively compresses the entire path from X to root, making all nodes point directly to root.
 Before: 1 → 2 → 3 → 4 (root)
 After find(1):  1 → 4
