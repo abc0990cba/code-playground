@@ -28,11 +28,11 @@ Three Path Compression Techniques:
         x = parent[x]  // Just climb up
     }
     return x
-  }
-  ```
+  } ```
 Problem: Trees remain tall, operations become slow over time.
-2. Full Path Compression (Recursive)  
-   ```go
+2. Full Path Compression (Recursive)
+
+ ```go
     func find(x int) int {
          if parent[x] != x {
              parent[x] = find(parent[x])  // Recursively compress entire path
