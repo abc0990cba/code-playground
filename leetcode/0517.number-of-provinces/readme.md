@@ -20,7 +20,9 @@ This is called "Path Halving" or "Path Splitting" - an optimization technique fo
 What Problem Does It Solve?
 In Union-Find, the find operation navigates up the tree to find the root. Without optimization, trees can become very tall (linked-list-like), making find operations O(n).
 
+---
 Three Path Compression Techniques:
+
 ---
 1. Naive Find (No Compression)
 ---
@@ -33,6 +35,7 @@ Three Path Compression Techniques:
    }
    ```
 Problem: Trees remain tall, operations become slow over time.
+
 ---
 2. Full Path Compression (Recursive)
 ---
@@ -49,6 +52,7 @@ How it works: When finding root for node X, it recursively compresses the entire
 Before: 1 → 2 → 3 → 4 (root)
 
 After find(1):  1 → 4  2 → 4  3 → 4
+
 ---
 3. Path Halving
 ---
