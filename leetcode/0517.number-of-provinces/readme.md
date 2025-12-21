@@ -31,6 +31,7 @@ Three Path Compression Techniques:
    }
    ```
 Problem: Trees remain tall, operations become slow over time.
+---
 2. Full Path Compression (Recursive)
 
  ```go
@@ -48,6 +49,7 @@ Before: 1 → 2 → 3 → 4 (root)
 After find(1):  1 → 4
                 2 → 4  
                 3 → 4
+---
 3. Path Halving
    ```go
  func find(x int) int {
