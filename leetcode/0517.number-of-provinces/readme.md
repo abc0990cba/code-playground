@@ -28,7 +28,8 @@ Three Path Compression Techniques:
         x = parent[x]  // Just climb up
     }
     return x
-  }```
+  }
+  ```
 Problem: Trees remain tall, operations become slow over time.
 2. Full Path Compression (Recursive)  
    ```go
@@ -37,7 +38,8 @@ Problem: Trees remain tall, operations become slow over time.
              parent[x] = find(parent[x])  // Recursively compress entire path
          }
          return parent[x]
-    }```
+    }
+```
 How it works: When finding root for node X, it recursively compresses the entire path from X to root, making all nodes point directly to root.
 Before: 1 → 2 → 3 → 4 (root)
 After find(1):  1 → 4
