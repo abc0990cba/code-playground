@@ -22,6 +22,7 @@ In Union-Find, the find operation navigates up the tree to find the root. Withou
 
 Three Path Compression Techniques:
 1. Naive Find (No Compression)
+---
    ```go
    func find(x int) int {
     for parent[x] != x {
@@ -31,9 +32,9 @@ Three Path Compression Techniques:
    }
    ```
 Problem: Trees remain tall, operations become slow over time.
----
-2. Full Path Compression (Recursive)
 
+2. Full Path Compression (Recursive)
+---
  ```go
     func find(x int) int {
          if parent[x] != x {
@@ -49,14 +50,15 @@ Before: 1 → 2 → 3 → 4 (root)
 After find(1):  1 → 4
                 2 → 4  
                 3 → 4
----
+
 3. Path Halving
+---
    ```go
  func find(x int) int {
-    for parent[x] != x {
-        parent[x] = parent[parent[x]]  // Make node point to its grandparent
-        x = parent[x]                  // Move to grandparent
-    }
+       for parent[x] != x {
+           parent[x] = parent[parent[x]]  // Make node point to its grandparent
+           x = parent[x]                  // Move to grandparent
+       }
     return x
 }
 ```
