@@ -16,7 +16,10 @@ func permute(nums []int) [][]int {
             }
             
             used[i] = true
-            backtrack(append(path, nums[i]))
+            path = append(path, nums[i])
+
+            backtrack(path)
+            path = path[:len(path)-1]
             used[i] = false
         }
     }
