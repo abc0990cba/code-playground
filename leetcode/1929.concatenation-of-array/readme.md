@@ -24,9 +24,42 @@ n == nums.length
 
 ---
 ## Solution
-
+Typescript 1
 ```ts
 function getConcatenation(nums: number[]): number[] {
     return [...nums, ...nums]
 };
+```
+
+Typescript 2
+```ts
+function getConcatenation(nums: number[]): number[] {
+    return nums.concat(nums)
+};
+```
+
+Typescript 3
+```ts
+function getConcatenation(nums: number[]): number[] {
+    return Array.from({ length: nums.length * 2 }, (_, i)=> nums[i % nums.length])
+};
+```
+
+Golang 1
+```go
+func getConcatenation(nums []int) []int {
+    res := make([]int, len(nums)*2)
+
+    copy(res, nums)
+    copy(res[len(nums):], nums)
+    
+    return res
+}
+```
+
+Golang 2
+```go
+func getConcatenation(nums []int) []int {
+   return append(append([]int{}, nums...), nums...)
+}
 ```
