@@ -1,3 +1,7 @@
+links:
+algos preparation:
+https://www.compilenrun.com/docs/fundamental/algorithm/algorithm-basics/space-complexity
+
 ![Alt text](image.png)
 ![Alt text](image-6.png)
 ![Alt text](image-1.png)
